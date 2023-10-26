@@ -7,4 +7,5 @@ Sections completed:
 2. Database Setup
 3. Templates and Views
 4. Add Some Style
-5. 
+5. JavaScript
+6. 
