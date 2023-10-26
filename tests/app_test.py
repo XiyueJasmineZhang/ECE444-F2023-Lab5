@@ -2,8 +2,8 @@ import os
 import pytest
 import json
 from pathlib import Path
-
 from project.app import app, db
+from project.models import Post
 
 TEST_DB = "test.db"
 
@@ -82,3 +82,19 @@ def test_delete_message(client):
     rv = client.get('/delete/1')
     data = json.loads(rv.data)
     assert data["status"] == 1
+
+
+# Jasmine Zhang
+def test_search(client):
+    """Test searching for posts"""
+    with app.app_context():
+        new_entry1 = Post("Cat", "This is a test entry 1.")
+        new_entry2 = Post("Dog", "This is a test entry 2.")
+        db.session.add(new_entry1)
+        db.session.add(new_entry2)
+        db.session.commit()
+
+    query = "Cat"
+    rv = client.get(f"/search/?query={query}")
+    assert query.encode() in rv.data
+    assert b"This is a test entry 1." in rv.data
