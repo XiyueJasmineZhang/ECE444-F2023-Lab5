@@ -10,7 +10,9 @@ Sections completed:
 5. JavaScript
 6. Bootstrap
 7. SQLAlchemy
-8. 
+8. Search Page
+9. Login Required
+10. 
 
 Unit Test Added:
 ```
