@@ -12,7 +12,10 @@ Sections completed:
 7. SQLAlchemy
 8. Search Page
 9. Login Required
-10. 
+10. Linting and Code Formatting
+
+Screenshot of Final Website:
+![website](images/website.png)
 
 Unit Test Added:
 ```
@@ -30,3 +33,7 @@ def test_search(client):
     assert query.encode() in rv.data
     assert b"This is a test entry 1." in rv.data
 ```
+
+Linting and Code Formatting Completed:
+![reformat 1](images/reformat1.png)
+![reformat 2](images/reformat2.png)
