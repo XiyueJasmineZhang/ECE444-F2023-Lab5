@@ -8,4 +8,5 @@ Sections completed:
 3. Templates and Views
 4. Add Some Style
 5. JavaScript
-6. 
+6. Bootstrap
+7. 
