@@ -9,4 +9,5 @@ Sections completed:
 4. Add Some Style
 5. JavaScript
 6. Bootstrap
-7. 
+7. SQLAlchemy
+8. 
