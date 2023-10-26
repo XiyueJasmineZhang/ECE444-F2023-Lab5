@@ -6,4 +6,5 @@ Sections completed:
 1. First Test
 2. Database Setup
 3. Templates and Views
-4. 
+4. Add Some Style
+5. 
