@@ -18,20 +18,51 @@ Referencing code from https://github.com/mjhea0/flaskr-tdd
 ![website](images/website.png)
 
 ### Unit Test Added:
+1. https://github.com/ECE444-2023Fall/project-1-web-application-design-group25-pixelpals/blob/b4a4c376d9244cb728b725713566aeb16fc56012/tests/test_app.py#L42
+2. https://github.com/ECE444-2023Fall/project-1-web-application-design-group25-pixelpals/blob/b4a4c376d9244cb728b725713566aeb16fc56012/tests/test_app.py#L57
 ```
-def test_search(client):
-    """Test searching for posts"""
-    with app.app_context():
-        new_entry1 = Post("Cat", "This is a test entry 1.")
-        new_entry2 = Post("Dog", "This is a test entry 2.")
-        db.session.add(new_entry1)
-        db.session.add(new_entry2)
-        db.session.commit()
+def test_add_event_post(client):            # Jasmine Zhang
+    # test adding event (POST request)
+    data = {
+        'event_name': 'Test Event',
+        'date': '01-10-2023',
+        'start_time': '10:00 AM',
+        'end_time': '12:00 PM',
+        'location': 'Test Location',
+        'description': 'Test Description',
+        'rsvp_link': 'https://google.com',
+        'organizer_id': 1
+    }
+    rv = client.post('/add_event/', data=data)
+    assert b"Event created successfully" in rv.data
 
-    query = "Cat"
-    rv = client.get(f"/search/?query={query}")
-    assert query.encode() in rv.data
-    assert b"This is a test entry 1." in rv.data
+def test_add_event_post_invalid(client):    # Jasmine Zhang
+    # test adding event with invalid data (POST request)
+    data = {
+        'event_name': '',  # empty name
+        'date': '01-10-2023',
+        'start_time': '10:00 AM',
+        'end_time': '12:00 PM',
+        'location': 'Test Location',
+        'description': 'Test Description',
+        'rsvp_link': 'https://google.com',
+        'organizer_id': 1
+    }
+    rv = client.post('/add_event/', data=data)
+    assert b"Error creating event" in rv.data
+
+    data = {
+        'event_name': 'Test Event',
+        'date': '01-10-2023',
+        'start_time': '10:00 AM',
+        'end_time': '12:00 PM',
+        'location': 'Test Location',
+        'description': 'Test Description',
+        'rsvp_link': 'invalid-link',  # invalid link
+        'organizer_id': 1
+    }
+    rv = client.post('/add_event/', data=data)
+    assert b"Error creating event" in rv.data
 ```
 
 ### Linting and Code Formatting Completed:
